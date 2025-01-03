@@ -1,4 +1,5 @@
 format = """
+$username\
 $directory\
 $git_branch\
 $git_status\
@@ -8,25 +9,25 @@ $golang\
 $php\
 \n$character"""
 
+[username]
+show_always = true
+style_user = "fg:black bg:blue"
+format = "[ $user: ]($style)"
+
 [directory]
-style = "fg:#e3e5e5 bg:#769ff0"
+style = "fg:white bg:394260"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
 
-[directory.substitutions]
-"Documents" = "󰈙 "
-"Downloads" = " "
-"Music" = " "
-"Pictures" = " "
-
 [git_branch]
 symbol = ""
-style = "bg:#394260"
+style = "bg:#94260"
 format = '[[ $symbol $branch ](fg:#769ff0 bg:#394260)]($style)'
 
 [git_status]
 style = "bg:#394260"
+modified = ""
 format = '[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)'
 
 [nodejs]
@@ -49,8 +50,10 @@ symbol = ""
 style = "bg:#212736"
 format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
 
-[time]
-disabled = false
-time_format = "%R" # Hour:Minute Format
-style = "bg:#1d2230"
-format = '[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)'
+[character]
+success_symbol = ' [\$](bold green)'
+error_symbol = ' [\$](bold red)'
+vimcmd_symbol = ' [\$](bold green)'
+vimcmd_replace_one_symbol = ' [\$](bold purple)'
+vimcmd_replace_symbol = ' [\$](bold purple)'
+vimcmd_visual_symbol = ' [\$](bold yellow)'
