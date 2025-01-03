@@ -16,11 +16,12 @@ format = "[ $user: ](bold $style)"
 
 [directory]
 style = "fg:white bg:#292e42"
-format = "[ $path ](bold $style)"
+format = "[ [ ](fg:blue bg:#292e42)$path ](bold $style)"
 truncation_length = 3
 truncation_symbol = "…/"
 
 [git_branch]
+always_show_remote = true
 symbol = "[](fg:#ff9e64)"
 style = "bg:#ff9e64"
 format = '[[ $symbol $branch ](bold fg:white bg:default)]($style)'
