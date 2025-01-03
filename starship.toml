@@ -1,12 +1,17 @@
 format = """
 $username\
 $directory\
+$custom\
 $git_branch\
 $git_status\
+$c\
+$java\
+$python\
 $nodejs\
 $rust\
 $golang\
 $php\
+$cmd_duration\
 \n$character"""
 
 [username]
@@ -15,8 +20,9 @@ style_user = "fg:black bg:blue"
 format = "[ $user: ](bold $style)"
 
 [directory]
+read_only = " 󰌾"
 style = "fg:white bg:#292e42"
-format = "[ [ ](fg:blue bg:#292e42)$path ](bold $style)"
+format = "[ [ ](fg:blue bg:#292e42)$path ](bold $style)[ ](bold default default)"
 truncation_length = 3
 truncation_symbol = "…/"
 
@@ -24,7 +30,7 @@ truncation_symbol = "…/"
 always_show_remote = true
 symbol = "[](fg:#ff9e64)"
 style = "bg:#ff9e64"
-format = '[[ $symbol $branch ](bold fg:white bg:default)]($style)'
+format = '[[ $branch ](bold fg:white bg:default)]($style)'
 
 [git_status]
 style = "bg:#394260"
@@ -34,27 +40,7 @@ untracked = '[󰿠 $count ](bold #414868)'
 modified = '[ $count ](bold #e0af68)'
 staged = '[ $count ](bold green)'
 deleted = "[ $count ](bold red)"
-format = '[[($ahead_behind$all_status )](fg:#769ff0 bg:default)]($style)'
-
-[nodejs]
-symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
-
-[rust]
-symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
-
-[golang]
-symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
-
-[php]
-symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+format = '[[($ahead_behind$all_status)](fg:#769ff0 bg:default)]($style)'
 
 [character]
 success_symbol = ' [\$](bold green)'
@@ -63,3 +49,169 @@ vimcmd_symbol = ' [\$](bold green)'
 vimcmd_replace_one_symbol = ' [\$](bold purple)'
 vimcmd_replace_symbol = ' [\$](bold purple)'
 vimcmd_visual_symbol = ' [\$](bold yellow)'
+
+[custom.git_dirty]
+require_repo = true
+when = 'git_dirty.sh'  
+symbol = '[󱓎](bold #ff9e64)'
+format = '$symbol'
+shell = ['zsh']
+
+[custom.git_clean]
+require_repo = true
+when = 'git_clean.sh'  
+symbol = '[](bold green)'
+format = '$symbol'
+shell = ['zsh']
+
+[aws]
+symbol = "  "
+
+[buf]
+symbol = " "
+
+[c]
+symbol = " "
+
+[conda]
+symbol = " "
+
+[crystal]
+symbol = " "
+
+[dart]
+symbol = " "
+
+
+[docker_context]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[fennel]
+symbol = " "
+
+[fossil_branch]
+symbol = " "
+
+
+[guix_shell]
+symbol = " "
+
+[haskell]
+symbol = " "
+
+[haxe]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+[hostname]
+ssh_symbol = " "
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[kotlin]
+symbol = " "
+
+[lua]
+symbol = " "
+
+[memory_usage]
+symbol = "󰍛 "
+
+[meson]
+symbol = "󰔷 "
+
+[nim]
+symbol = "󰆥 "
+
+[nix_shell]
+symbol = " "
+
+[ocaml]
+symbol = " "
+
+[os.symbols]
+Alpaquita = " "
+Alpine = " "
+AlmaLinux = " "
+Amazon = " "
+Android = " "
+Arch = " "
+Artix = " "
+CentOS = " "
+Debian = " "
+DragonFly = " "
+Emscripten = " "
+EndeavourOS = " "
+Fedora = " "
+FreeBSD = " "
+Garuda = "󰛓 "
+Gentoo = " "
+HardenedBSD = "󰞌 "
+Illumos = "󰈸 "
+Kali = " "
+Linux = " "
+Mabox = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+OpenBSD = "󰈺 "
+openSUSE = " "
+OracleLinux = "󰌷 "
+Pop = " "
+Raspbian = " "
+Redhat = " "
+RedHatEnterprise = " "
+RockyLinux = " "
+Redox = "󰀘 "
+Solus = "󰠳 "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Void = " "
+Windows = "󰍲 "
+
+[package]
+symbol = "󰏗 "
+
+[perl]
+symbol = " "
+
+[pijul_channel]
+symbol = " "
+
+[python]
+symbol = " "
+
+[rlang]
+symbol = "󰟔 "
+
+[ruby]
+symbol = " "
+
+[scala]
+symbol = " "
+
+[swift]
+symbol = " "
+
+[zig]
+symbol = " "
+
+[gradle]
+symbol = " "
