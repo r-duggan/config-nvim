@@ -1,7 +1,8 @@
 format = """
 $username\
 $directory\
-$custom\
+${custom.git_dirty}\
+${custom.git_clean}\
 $git_branch\
 $git_status\
 $c\
@@ -55,14 +56,12 @@ require_repo = true
 when = 'git_dirty.sh'  
 symbol = '[󱓎](bold #ff9e64)'
 format = '$symbol'
-shell = ['zsh']
 
 [custom.git_clean]
 require_repo = true
 when = 'git_clean.sh'  
 symbol = '[](bold green)'
 format = '$symbol'
-shell = ['zsh']
 
 [aws]
 symbol = "  "
