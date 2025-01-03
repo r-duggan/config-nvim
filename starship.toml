@@ -27,14 +27,12 @@ format = '[[ $symbol $branch ](fg:#769ff0 bg:#394260)]($style)'
 
 [git_status]
 style = "bg:#394260"
-ahead = '[󰛃 $count](bold red)'
-behind = '[󰛀 $count](bold red)'
+ahead = '[󰛃 $count ](bold red)'
+behind = '[󰛀 $count ](bold red)'
 untracked = '[󰿠 $count ](bold gray)'
 modified = '[ $count ](bold red)'
-staged = '[ $count](bold green)'
-#"[ \($count\)](green)"
-
-deleted = "-"
+staged = '[ $count ](bold green)'
+deleted = "[ $count ](bold red)"
 format = '[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)'
 
 [nodejs]
