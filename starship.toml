@@ -14,12 +14,8 @@ $git_status\
 $cmd_duration\
 $fill\
 ${custom.singlespace}\
-$c\
-$gradle\
-$java\
-$python\
-$nodejs\
-\n$character"""
+$all\
+$character"""
 
 [username]
 show_always = true
@@ -82,7 +78,6 @@ format = '$symbol'
 
 [aws]
 symbol = ""
-version_format = 'v${raw}'
 format = "$symbol ($version(-$name)) "
 
 [buf]
@@ -114,7 +109,6 @@ format = "[$symbol ($version(-$name)) ]($style)"
 
 [docker_context]
 style = "#2b55ca"
-version_format = 'v${raw}'
 format = "[$symbol ($version(-$name)) ]($style)"
 
 [elixir]
@@ -134,12 +128,10 @@ format = "[$symbol ($version(-$name)) ]($style)"
 
 [fossil_branch]
 symbol = ""
-version_format = 'v${raw}'
 format = "[$symbol ($version(-$name)) ]($style)"
 
 [guix_shell]
 symbol = ""
-version_format = 'v${raw}'
 format = "[$symbol ($version(-$name)) ]($style)"
 
 [haskell]
@@ -154,12 +146,10 @@ format = "[$symbol ($version(-$name)) ]($style)"
 
 [hg_branch]
 symbol = ""
-version_format = 'v${raw}'
 format = "[$symbol ($version(-$name)) ]($style)"
 
 [hostname]
 ssh_symbol = ""
-version_format = 'v${raw}'
 format = "[$symbol ($version(-$name)) ]($style)"
 
 [java]
@@ -185,7 +175,6 @@ format = "[$symbol ($version(-$name)) ]($style)"
 
 [memory_usage]
 symbol = "󰍛"
-version_format = 'v${raw}'
 format = "[$symbol ($version(-$name)) ]($style)"
 
 [meson]
@@ -200,7 +189,6 @@ format = "[$symbol ($version(-$name)) ]($style)"
 
 [nix_shell]
 symbol = ""
-version_format = 'v${raw}'
 format = "[$symbol ($version(-$name)) ]($style)"
 
 [nodejs]
