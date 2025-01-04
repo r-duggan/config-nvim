@@ -4,8 +4,9 @@
 # Inserts a blank line between shell prompts
 add_newline = false
 
+#$username\
+
 format = """
-$username\
 $directory\
 ${custom.git_dirty}\
 ${custom.git_clean}\
@@ -14,18 +15,22 @@ $git_status\
 $cmd_duration\
 $fill\
 ${custom.singlespace}\
-$all\
-$character"""
+$c\
+$gradle\
+$java\
+$python\
+$nodejs\
+\n$character"""
 
 [username]
 show_always = true
-style_user = "fg:black bg:blue"
+style_user = "fg:blue bg:default"
 format = "[ $user: ](bold $style)"
 
 [directory]
 read_only = " 󰌾"
-style = "fg:white bg:#292e42"
-format = "[ [ ](fg:blue bg:#292e42)$path ](bold $style)[ ](bold default default)"
+style = "fg:292e42 bg:default"
+format = "[ [ ](fg:blue bg:default)$path](bold $style)[ ](bold default default)"
 truncation_length = 3
 truncation_symbol = "…/"
 
@@ -49,12 +54,12 @@ deleted = "[ $count ](bold red)"
 format = '[[($ahead_behind$all_status)](fg:#769ff0 bg:default)]($style)'
 
 [character]
-success_symbol = ' [\$](bold green)'
-error_symbol = ' [\$](bold red)'
-vimcmd_symbol = ' [\$](bold green)'
-vimcmd_replace_one_symbol = ' [\$](bold purple)'
-vimcmd_replace_symbol = ' [\$](bold purple)'
-vimcmd_visual_symbol = ' [\$](bold yellow)'
+success_symbol = ' [❯](bold green)'
+error_symbol = ' [❯](bold red)'
+vimcmd_symbol = ' [❯](bold green)'
+vimcmd_replace_one_symbol = ' [❯](bold purple)'
+vimcmd_replace_symbol = ' [❯](bold purple)'
+vimcmd_visual_symbol = ' [❯](bold yellow)'
 
 [fill]
 symbol = '·'
@@ -62,13 +67,13 @@ symbol = '·'
 [custom.git_dirty]
 require_repo = true
 when = '~/.config/starship/scripts/git_dirty.sh'  
-symbol = '[󱓎](bold #ff9e64)'
+symbol = '[on 󱓎](bold #ff9e64)'
 format = '$symbol'
 
 [custom.git_clean]
 require_repo = true
 when = '~/.config/starship/scripts/git_clean.sh'  
-symbol = '[](bold green)'
+symbol = '[on ](bold green)'
 format = '$symbol'
 
 [custom.singlespace]
