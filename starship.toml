@@ -1,3 +1,9 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = false
+
 format = """
 $username\
 $directory\
@@ -5,14 +11,14 @@ ${custom.git_dirty}\
 ${custom.git_clean}\
 $git_branch\
 $git_status\
+$cmd_duration\
+$fill\
+${custom.singlespace}\
 $c\
+$gradle\
 $java\
 $python\
 $nodejs\
-$rust\
-$golang\
-$php\
-$cmd_duration\
 \n$character"""
 
 [username]
@@ -26,6 +32,9 @@ style = "fg:white bg:#292e42"
 format = "[ [ ](fg:blue bg:#292e42)$path ](bold $style)[ ](bold default default)"
 truncation_length = 3
 truncation_symbol = "…/"
+
+[cmd_duration]
+format = "[took $duration ]($style)"
 
 [git_branch]
 always_show_remote = true
@@ -51,6 +60,9 @@ vimcmd_replace_one_symbol = ' [\$](bold purple)'
 vimcmd_replace_symbol = ' [\$](bold purple)'
 vimcmd_visual_symbol = ' [\$](bold yellow)'
 
+[fill]
+symbol = '·'
+
 [custom.git_dirty]
 require_repo = true
 when = 'git_dirty.sh'  
@@ -63,154 +75,239 @@ when = 'git_clean.sh'
 symbol = '[](bold green)'
 format = '$symbol'
 
+[custom.singlespace]
+symbol = ' '
+when = true
+format = '$symbol'
+
 [aws]
-symbol = "  "
+symbol = ""
+version_format = 'v${raw}'
+format = "$symbol ($version(-$name)) "
 
 [buf]
-symbol = " "
+symbol = ""
+version_format = 'v${raw}'
+format = "$symbol ($version(-$name)) "
 
 [c]
-symbol = " "
+style = 'bold 149'
+symbol = "[](bold 149)"
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
+detect_extensions = ['c', 'h', 'cpp']
 
 [conda]
-symbol = " "
+symbol = ""
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
 
 [crystal]
-symbol = " "
+symbol = ""
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
 
 [dart]
-symbol = " "
-
+symbol = ""
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
 
 [docker_context]
-symbol = " "
+style = "#2b55ca"
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
 
 [elixir]
-symbol = " "
+style = "#2b55ca"
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
 
 [elm]
-symbol = " "
+style = "#2b55ca"
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
 
 [fennel]
-symbol = " "
+style = "#2b55ca"
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
 
 [fossil_branch]
-symbol = " "
-
+symbol = ""
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
 
 [guix_shell]
-symbol = " "
+symbol = ""
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
 
 [haskell]
-symbol = " "
+symbol = ""
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
 
 [haxe]
-symbol = " "
+symbol = ""
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
 
 [hg_branch]
-symbol = " "
+symbol = ""
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
 
 [hostname]
-ssh_symbol = " "
+ssh_symbol = ""
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
 
 [java]
-symbol = " "
+style = 'bold red dimmed'
+symbol = ""
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
 
 [julia]
-symbol = " "
+symbol = ""
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
 
 [kotlin]
-symbol = " "
+symbol = ""
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
 
 [lua]
-symbol = " "
+symbol = ""
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
 
 [memory_usage]
-symbol = "󰍛 "
+symbol = "󰍛"
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
 
 [meson]
-symbol = "󰔷 "
+symbol = "󰔷"
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
 
 [nim]
-symbol = "󰆥 "
+symbol = "󰆥"
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
 
 [nix_shell]
-symbol = " "
+symbol = ""
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
+
+[nodejs]
+style = 'bold green'
+not_capable_style = 'bold red'
+symbol = ""
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
 
 [ocaml]
-symbol = " "
+symbol = ""
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
 
 [os.symbols]
-Alpaquita = " "
-Alpine = " "
-AlmaLinux = " "
-Amazon = " "
-Android = " "
-Arch = " "
-Artix = " "
-CentOS = " "
-Debian = " "
-DragonFly = " "
-Emscripten = " "
-EndeavourOS = " "
-Fedora = " "
-FreeBSD = " "
-Garuda = "󰛓 "
-Gentoo = " "
-HardenedBSD = "󰞌 "
-Illumos = "󰈸 "
-Kali = " "
-Linux = " "
-Mabox = " "
-Macos = " "
-Manjaro = " "
-Mariner = " "
-MidnightBSD = " "
-Mint = " "
-NetBSD = " "
-NixOS = " "
-OpenBSD = "󰈺 "
-openSUSE = " "
-OracleLinux = "󰌷 "
-Pop = " "
-Raspbian = " "
-Redhat = " "
-RedHatEnterprise = " "
-RockyLinux = " "
-Redox = "󰀘 "
-Solus = "󰠳 "
-SUSE = " "
-Ubuntu = " "
-Unknown = " "
-Void = " "
-Windows = "󰍲 "
+Alpaquita = ""
+Alpine = ""
+AlmaLinux = ""
+Amazon = ""
+Android = ""
+Arch = ""
+Artix = ""
+CentOS = ""
+Debian = ""
+DragonFly = ""
+Emscripten = ""
+EndeavourOS = ""
+Fedora = ""
+FreeBSD = ""
+Garuda = "󰛓"
+Gentoo = ""
+HardenedBSD = "󰞌"
+Illumos = "󰈸"
+Kali = ""
+Linux = ""
+Mabox = ""
+Macos = ""
+Manjaro = ""
+Mariner = ""
+MidnightBSD = ""
+Mint = ""
+NetBSD = ""
+NixOS = ""
+OpenBSD = "󰈺"
+openSUSE = ""
+OracleLinux = "󰌷"
+Pop = ""
+Raspbian = ""
+Redhat = ""
+RedHatEnterprise = ""
+RockyLinux = ""
+Redox = "󰀘"
+Solus = "󰠳"
+SUSE = ""
+Ubuntu = ""
+Unknown = ""
+Void = ""
+Windows = "󰍲"
 
 [package]
-symbol = "󰏗 "
+symbol = "󰏗"
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
 
 [perl]
-symbol = " "
+symbol = ""
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
 
 [pijul_channel]
-symbol = " "
+symbol = ""
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
 
 [python]
-symbol = " "
+style = 'yellow bold'
+symbol = ""
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
 
 [rlang]
-symbol = "󰟔 "
+symbol = "󰟔"
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
 
 [ruby]
-symbol = " "
+symbol = ""
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
 
 [scala]
-symbol = " "
+symbol = ""
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
 
 [swift]
-symbol = " "
+symbol = ""
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
 
 [zig]
-symbol = " "
+symbol = ""
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
 
 [gradle]
-symbol = " "
+style = 'bold bright-cyan'
+symbol = ""
+version_format = 'v${raw}'
+format = "[$symbol ($version(-$name)) ]($style)"
