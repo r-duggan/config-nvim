@@ -61,13 +61,13 @@ symbol = '·'
 
 [custom.git_dirty]
 require_repo = true
-when = 'git_dirty.sh'  
+when = '~/.config/starship/scripts/git_dirty.sh'  
 symbol = '[󱓎](bold #ff9e64)'
 format = '$symbol'
 
 [custom.git_clean]
 require_repo = true
-when = 'git_clean.sh'  
+when = '~/.config/starship/scripts/git_clean.sh'  
 symbol = '[](bold green)'
 format = '$symbol'
 
