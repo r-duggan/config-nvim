@@ -46,7 +46,7 @@ return {
 			Navic,
 			lib.component.fill(),
 			lib.component.fill(),
-			lib.component.lsp({ lsp_progress = false }),
+			lib.component.lsp(),
 			lib.component.compiler_state(),
 			lib.component.virtual_env(),
 			lib.component.nav({
