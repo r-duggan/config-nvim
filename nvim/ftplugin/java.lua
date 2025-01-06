@@ -1,5 +1,6 @@
 local home = os.getenv("HOME")
 local jdtls = require("jdtls")
+local set = vim.keymap.set
 --local jdtls = require("mason-registry").get_package("jdtls")
 
 -- File types that signify a Java project's root directory. This will be
@@ -25,47 +26,26 @@ local java_test = require("mason-registry").get_package("java-test")
 local jt_path = java_test:get_install_path()
 vim.list_extend(bundles, vim.split(vim.fn.glob(jt_path .. "/extension/server/*.jar", 1), "\n"))
 
--- Helper function for creating keymaps
-local function nnoremap(rhs, lhs, bufopts, desc)
-	bufopts.desc = desc
-	vim.keymap.set("n", rhs, lhs, bufopts)
-end
-
+-- keymaps
+-- stylua: ignore
+local keys = {
+  { "n", "<leader>Jo", "<cmd>lua require('jdtls').organize_imports()<CR>",            "[J]ava [O]rganize imports" },
+  { "n", "<leader>Jv", '<cmd>lua require("jdtls").extract_variable()<CR>',            "[J]ava extract [V]ariable" },
+  { "v", "<leader>Jv", '<ESC><cmd>lua require("jdtls").extract_variable()<CR>',       "[J]ava extract [V]ariable" },
+  { "n", "<leader>JC", '<cmd>lua require("jdtls").extract_constant()<CR>',            "[J]ava [C]onstant" },
+  { "v", "<leader>JC", '<ESC><cmd>lua require("jdtls").extract_constant()<CR>',       "[J]ava [C]onstant" },
+  { "n", "<leader>Jt", '<cmd>lua require("jdtls").test_nearest_method()<CR>',         "[J]ava [t]est method" },
+  { "v", "<space>Jm",  '[[<ESC><CMD>lua require("jdtls").extract_method(true)<CR>]]', "[J]ava extract [M]ethod" },
+  { "n", "<leader>JT", '<cmd>lua require("jdtls").test_class()<CR>',                  "[J]ava [T]est class" },
+  { "n", "<leader>Ju", "<cmd>JdtUpdateConfig<CR>",                                    "[J]ava [U]pdate config" },
+  { "n", "<leader>Jr", cmd = require("springboot-nvim").boot_run,                     "[r] Sprint Boot" },
+  { "n", "<leader>Jc", cmd = require("springboot-nvim").generate_class,               "create [c]ass" },
+  { "n", "<leader>Ji", cmd = require("springboot-nvim").generate_interface,           "create [i]nterface" },
+  { "n", "<leader>Je", cmd = require("springboot-nvim").generate_enum,                "create [e]num" },
+}
 -- The on_attach function is used to set key maps after the language server
 -- attaches to the current buffer
 local on_attach = function(client, bufnr)
-	-- Regular Neovim LSP client keymappings
-	local bufopts = { noremap = true, silent = true, buffer = bufnr }
-	-- nnoremap("<space>wl", function()
-	-- 	print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-	-- end, bufopts, "List workspace folders")
-	-- nnoremap("<space>D", vim.lsp.buf.type_definition, bufopts, "Go to type definition")
-	-- nnoremap("<space>rn", vim.lsp.buf.rename, bufopts, "Rename")
-	-- nnoremap("<space>ca", vim.lsp.buf.code_action, bufopts, "Code actions")
-	-- vim.keymap.set(
-	-- 	"v",
-	-- 	"<space>ca",
-	-- 	"<ESC><CMD>lua vim.lsp.buf.range_code_action()<CR>",
-	-- 	{ noremap = true, silent = true, buffer = bufnr, desc = "Code actions" }
-	-- )
-	-- nnoremap("<space>f", function()
-	-- 	vim.lsp.buf.format({ async = true })
-	-- end, bufopts, "Format file")
-
-	-- -- Java extensions provided by jdtls
-	-- nnoremap("<C-o>", jdtls.organize_imports, bufopts, "Organize imports")
-	-- nnoremap("<space>ev", jdtls.extract_variable, bufopts, "Extract variable")
-	-- nnoremap("<space>ec", jdtls.extract_constant, bufopts, "Extract constant")
-	-- vim.keymap.set(
-	-- 	"v",
-	-- 	"<space>em",
-	-- 	[[<ESC><CMD>lua require('jdtls').extract_method(true)<CR>]],
-	-- 	{ noremap = true, silent = true, buffer = bufnr, desc = "Extract method" }
-	-- )
-	local whichkey = require("which-key")
-	whichkey.add({
-		{ "<leader>J", group = "Java" },
-	})
 	vim.cmd(
 		"command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_compile JdtCompile lua require('jdtls').compile(<f-args>)"
 	)
@@ -73,54 +53,12 @@ local on_attach = function(client, bufnr)
 	vim.cmd("command! -buffer JdtByteCode lua require('jdtls').javap()")
 	vim.cmd("command! -buffer JdtJshell lua require('jdtls').jshell()")
 
-	vim.keymap.set(
-		"n",
-		"<leader>Jo",
-		'<cmd>lua require("jdtls").organize_imports()<CR>',
-		{ desc = "[J]ava [o]rganize imports" }
-	)
-	vim.keymap.set(
-		"n",
-		"<leader>Jv",
-		'<cmd>lua require("jdtls").extract_variable()<CR>',
-		{ desc = "[J]ava extract [v]ariable" }
-	)
-	vim.keymap.set(
-		"v",
-		"<leader>Jv",
-		'<ESC><cmd>lua require("jdtls").extract_variable()<CR>',
-		{ desc = "[J]ava extract [v]ariable" }
-	)
-	vim.keymap.set(
-		"n",
-		"<leader>JC",
-		'<cmd>lua require("jdtls").extract_constant()<CR>',
-		{ desc = "[J]ava extract [C]onstant" }
-	)
-	vim.keymap.set(
-		"v",
-		"<leader>JC",
-		'<ESC><cmd>lua require("jdtls").extract_constant()<CR>',
-		{ desc = "[J]ava extract [C]onstant" }
-	)
-	vim.keymap.set(
-		"n",
-		"<leader>Jt",
-		'<cmd>lua require("jdtls").test_nearest_method()<CR>',
-		{ desc = "[J]ava [t]est method" }
-	)
-	vim.keymap.set(
-		"v",
-		"<space>Jm",
-		[[<ESC><CMD>lua require('jdtls').extract_method(true)<CR>]],
-		{ noremap = true, silent = true, buffer = bufnr, desc = "Extract method" }
-	)
-	vim.keymap.set("n", "<leader>JT", '<cmd>lua require("jdtls").test_class()<CR>', { desc = "[J]ava [T]est class" })
-	vim.keymap.set("n", "<leader>Ju", "<cmd>JdtUpdateConfig<CR>", { desc = "[J]ava [u]pdate config" })
-	vim.keymap.set("n", "<leader>Jr", require("springboot-nvim").boot_run, { desc = "[r] Sprint Boot" })
-	vim.keymap.set("n", "<leader>Jc", require("springboot-nvim").generate_class, { desc = "create [c]lass" })
-	vim.keymap.set("n", "<leader>Ji", require("springboot-nvim").generate_interface, { desc = "create [i]nterface" })
-	vim.keymap.set("n", "<leader>Je", require("springboot-nvim").generate_enum, { desc = "create [e]num" })
+	require("nvim-navic").attach(client, bufnr)
+
+	-- set keymaps from javakeys.lua
+	for k, v in ipairs(keys) do
+		set(v[1], v[2], v[3], { noremap = true, silent = true, buffer = bufnr, desc = v[4] })
+	end
 end
 
 local ec = jdtls.extendedClientCapabilities
