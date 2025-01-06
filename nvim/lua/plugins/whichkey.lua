@@ -12,7 +12,7 @@ return {
     preset = "helix",
     spec = {
       { "<leader>b", group = "[B]uffer" },
-      { "<leader>c", group = "[C]ode",      mode = { "n", "x" } },
+      { "<leader>c", group = "[C]ode", mode = { "n", "x" } },
       { "<leader>d", group = "[D]ebug" },
       { "<leader>f", group = "Fuzzy Finder" },
       { "<leader>l", group = "Lazy" },
@@ -20,8 +20,8 @@ return {
       { "<leader>s", group = "Windows" },
       { "<leader>w", group = "[W]orkspace" },
       { "<leader>t", group = "[T]oggle" },
-      { "<leader>h", group = "Git [H]unk",  mode = { "n", "v" } },
-      { "<leader>J", group = "[J]ava",      mode = { "n", "v" } },
+      { "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
+      { "<leader>J", group = "[J]ava", mode = { "n", "v" } },
     },
   },
 }

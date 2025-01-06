@@ -1,14 +1,14 @@
 return {
-  'nvim-treesitter/nvim-treesitter',
+  "nvim-treesitter/nvim-treesitter",
   config = function()
     -- set options with setup
-    require('nvim-treesitter.configs').setup({
+    require("nvim-treesitter.configs").setup({
       ensure_installed = {
-        'c',
-        'lua',
-        'vim',
-        'vimdoc',
-        'query',
+        "c",
+        "lua",
+        "vim",
+        "vimdoc",
+        "query",
       },
       auto_install = true,
       highlight = {
@@ -23,6 +23,9 @@ return {
           node_decremental = "<leader>sd",
         },
       },
+      modules = {},
+      sync_install = {},
+      ignore_install = {},
     })
   end,
 }

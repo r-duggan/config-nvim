@@ -14,27 +14,27 @@ set("n", "<S-h>", "<cmd>BufferLineCyclePrev<CR>", { desc = "[B]uffer [P]revious"
 
 -- code & dap
 vim.api.nvim_create_autocmd("LspAttach", {
-	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-	callback = function(ev)
-		-- Buffer local mappings.
-		-- See `:help vim.lsp.*` for documentation on any of the below functions
-		local map = function(keys, func, desc, mode)
-			mode = mode or "n"
-			set(mode, keys, func, { buffer = ev.buf, desc = "LSP: " .. desc })
-		end
-		-- set keybinds
-		map("gd", require("fzf-lua").lsp_definitions, "[G]oto [D]efinition")
-		map("gr", require("fzf-lua").lsp_references, "[G]oto [R]eferences")
-		map("gI", require("fzf-lua").lsp_implementations, "[G]oto [I]mplementations")
-		map("<leader>D", require("fzf-lua").lsp_typedefs, "Type [D]efinition")
-		map("<leader>ds", require("fzf-lua").lsp_document_symbols, "[D]ocument [S]ymbols")
-		map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-		map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ctions", { "n", "x" })
-		map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-		map("<C-k", vim.lsp.buf.signature_help, "Show signatures")
-		map("K", vim.lsp.buf.hover, "Hover text")
-		map("<leader>ws", require("fzf-lua").lsp_workspace_symbols, "[W]orkspace [S]ymbols")
-	end,
+  group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+  callback = function(ev)
+    -- Buffer local mappings.
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    local map = function(keys, func, desc, mode)
+      mode = mode or "n"
+      set(mode, keys, func, { buffer = ev.buf, desc = "LSP: " .. desc })
+    end
+    -- set keybinds
+    map("gd", require("fzf-lua").lsp_definitions, "[G]oto [D]efinition")
+    map("gr", require("fzf-lua").lsp_references, "[G]oto [R]eferences")
+    map("gI", require("fzf-lua").lsp_implementations, "[G]oto [I]mplementations")
+    map("<leader>D", require("fzf-lua").lsp_typedefs, "Type [D]efinition")
+    map("<leader>ds", require("fzf-lua").lsp_document_symbols, "[D]ocument [S]ymbols")
+    map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+    map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ctions", { "n", "x" })
+    map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+    map("<C-k", vim.lsp.buf.signature_help, "Show signatures")
+    map("K", vim.lsp.buf.hover, "Hover text")
+    map("<leader>ws", require("fzf-lua").lsp_workspace_symbols, "[W]orkspace [S]ymbols")
+  end,
 })
 
 -- fuzzy finder

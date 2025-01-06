@@ -1,14 +1,14 @@
 return {
-	"mfussenegger/nvim-dap",
-	dependencies = {
-		"rcarriga/nvim-dap-ui",
-		event = "VeryLazy",
-		"nvim-neotest/nvim-nio",
-		{
-			"theHamsta/nvim-dap-virtual-text",
-			opts = {},
-		},
-	},
+  "mfussenegger/nvim-dap",
+  dependencies = {
+    "rcarriga/nvim-dap-ui",
+    event = "VeryLazy",
+    "nvim-neotest/nvim-nio",
+    {
+      "theHamsta/nvim-dap-virtual-text",
+      opts = {},
+    },
+  },
   -- stylua: ignore
   keys = {
     { "<leader>dB", function() require("dap").set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, desc = "Breakpoint Condition" },
@@ -29,24 +29,24 @@ return {
     { "<leader>dw", function() require("dap.ui.widgets").hover() end,                                     desc = "Widgets" },
     { "<leader>du", function() require("dapui").toggle() end,                                             desc = "UI" },
   },
-	config = function()
-		local dap = require("dap")
-		local dapui = require("dapui")
+  config = function()
+    local dap = require("dap")
+    local dapui = require("dapui")
 
-		vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
+    vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
 
-		vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "Error", linehl = "", numhl = "" })
+    vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "Error", linehl = "", numhl = "" })
 
-		dapui.setup()
+    dapui.setup()
 
-		dap.listeners.before.launch.dapui_config = function()
-			dapui.open()
-		end
+    dap.listeners.before.launch.dapui_config = function()
+      dapui.open()
+    end
 
-		local vscode = require("dap.ext.vscode")
-		local json = require("plenary.json")
-		vscode.json_decode = function(str)
-			return vim.json.decode(json.json_strip_comments(str))
-		end
-	end,
+    local vscode = require("dap.ext.vscode")
+    local json = require("plenary.json")
+    vscode.json_decode = function(str)
+      return vim.json.decode(json.json_strip_comments(str))
+    end
+  end,
 }

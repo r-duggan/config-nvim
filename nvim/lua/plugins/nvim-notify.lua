@@ -1,8 +1,9 @@
+--stylua:ignore
 return {
-	"rcarriga/nvim-notify",
-	config = function()
-		require("notify").setup({
-			render = "compact",
-		})
-	end,
+  "rcarriga/nvim-notify",
+  config = function()
+    require("notify").setup({
+      render = "compact",
+    })
+  end,
 }
