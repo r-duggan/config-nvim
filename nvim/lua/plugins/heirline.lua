@@ -2,6 +2,7 @@ return {
 	"rebelot/heirline.nvim",
 	dependencies = {
 		"Zeioth/heirline-components.nvim",
+		"SmiteshP/nvim-navic",
 	},
 	config = function()
 		local heirline = require("heirline")
@@ -46,7 +47,7 @@ return {
 			Navic,
 			lib.component.fill(),
 			lib.component.fill(),
-			lib.component.lsp(),
+			lib.component.lsp({ lsp_progress = false }),
 			lib.component.compiler_state(),
 			lib.component.virtual_env(),
 			lib.component.nav({

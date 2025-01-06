@@ -26,7 +26,7 @@ local jt_path = java_test:get_install_path()
 vim.list_extend(bundles, vim.split(vim.fn.glob(jt_path .. "/extension/server/*.jar", 1), "\n"))
 
 -- Helper function for creating keymaps
-function nnoremap(rhs, lhs, bufopts, desc)
+local function nnoremap(rhs, lhs, bufopts, desc)
 	bufopts.desc = desc
 	vim.keymap.set("n", rhs, lhs, bufopts)
 end
@@ -35,14 +35,7 @@ end
 -- attaches to the current buffer
 local on_attach = function(client, bufnr)
 	-- Regular Neovim LSP client keymappings
-	-- local bufopts = { noremap = true, silent = true, buffer = bufnr }
-	-- nnoremap("gD", vim.lsp.buf.declaration, bufopts, "Go to declaration")
-	-- nnoremap("gd", vim.lsp.buf.definition, bufopts, "Go to definition")
-	-- nnoremap("gi", vim.lsp.buf.implementation, bufopts, "Go to implementation")
-	-- nnoremap("K", vim.lsp.buf.hover, bufopts, "Hover text")
-	-- nnoremap("<C-k>", vim.lsp.buf.signature_help, bufopts, "Show signature")
-	-- nnoremap("<space>wa", vim.lsp.buf.add_workspace_folder, bufopts, "Add workspace folder")
-	-- nnoremap("<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts, "Remove workspace folder")
+	local bufopts = { noremap = true, silent = true, buffer = bufnr }
 	-- nnoremap("<space>wl", function()
 	-- 	print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 	-- end, bufopts, "List workspace folders")
@@ -80,26 +73,49 @@ local on_attach = function(client, bufnr)
 	vim.cmd("command! -buffer JdtByteCode lua require('jdtls').javap()")
 	vim.cmd("command! -buffer JdtJshell lua require('jdtls').jshell()")
 
-  -- stylua: ignore
-  vim.keymap.set("n", "<leader>Jo", '<cmd>lua require("jdtls").organize_imports()<CR>',
-    { desc = "[J]ava [o]rganize imports" })
-  -- stylua: ignore
-  vim.keymap.set("n", "<leader>Jv", '<cmd>lua require("jdtls").extract_variable()<CR>',
-    { desc = "[J]ava extract [v]ariable" })
-  -- stylua: ignore
-  vim.keymap.set("v", "<leader>Jv", '<ESC><cmd>lua require("jdtls").extract_variable()<CR>',
-    { desc = "[J]ava extract [v]ariable" })
-  -- stylua: ignore
-  vim.keymap.set("n", "<leader>JC", '<cmd>lua require("jdtls").extract_constant()<CR>',
-    { desc = "[J]ava extract [C]onstant" })
-  -- stylua: ignore
-  vim.keymap.set("v", "<leader>JC", '<ESC><cmd>lua require("jdtls").extract_constant()<CR>',
-    { desc = "[J]ava extract [C]onstant" })
-  -- stylua: ignore
-  vim.keymap.set("n", "<leader>Jt", '<cmd>lua require("jdtls").test_nearest_method()<CR>',
-    { desc = "[J]ava [t]est method" })
-  -- stylua: ignore
-  vim.keymap.set("n", "<leader>JT", '<cmd>lua require("jdtls").test_class()<CR>', { desc = "[J]ava [T]est class" })
+	vim.keymap.set(
+		"n",
+		"<leader>Jo",
+		'<cmd>lua require("jdtls").organize_imports()<CR>',
+		{ desc = "[J]ava [o]rganize imports" }
+	)
+	vim.keymap.set(
+		"n",
+		"<leader>Jv",
+		'<cmd>lua require("jdtls").extract_variable()<CR>',
+		{ desc = "[J]ava extract [v]ariable" }
+	)
+	vim.keymap.set(
+		"v",
+		"<leader>Jv",
+		'<ESC><cmd>lua require("jdtls").extract_variable()<CR>',
+		{ desc = "[J]ava extract [v]ariable" }
+	)
+	vim.keymap.set(
+		"n",
+		"<leader>JC",
+		'<cmd>lua require("jdtls").extract_constant()<CR>',
+		{ desc = "[J]ava extract [C]onstant" }
+	)
+	vim.keymap.set(
+		"v",
+		"<leader>JC",
+		'<ESC><cmd>lua require("jdtls").extract_constant()<CR>',
+		{ desc = "[J]ava extract [C]onstant" }
+	)
+	vim.keymap.set(
+		"n",
+		"<leader>Jt",
+		'<cmd>lua require("jdtls").test_nearest_method()<CR>',
+		{ desc = "[J]ava [t]est method" }
+	)
+	vim.keymap.set(
+		"v",
+		"<space>Jm",
+		[[<ESC><CMD>lua require('jdtls').extract_method(true)<CR>]],
+		{ noremap = true, silent = true, buffer = bufnr, desc = "Extract method" }
+	)
+	vim.keymap.set("n", "<leader>JT", '<cmd>lua require("jdtls").test_class()<CR>', { desc = "[J]ava [T]est class" })
 	vim.keymap.set("n", "<leader>Ju", "<cmd>JdtUpdateConfig<CR>", { desc = "[J]ava [u]pdate config" })
 	vim.keymap.set("n", "<leader>Jr", require("springboot-nvim").boot_run, { desc = "[r] Sprint Boot" })
 	vim.keymap.set("n", "<leader>Jc", require("springboot-nvim").generate_class, { desc = "create [c]lass" })
