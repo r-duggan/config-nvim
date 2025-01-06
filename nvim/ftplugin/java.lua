@@ -11,13 +11,13 @@ local workspace_folder = home .. "/.config/eclipse/workspace/" .. vim.fn.fnamemo
 local java_debug = require("mason-registry").get_package("java-debug-adapter")
 local jd_path = java_debug:get_install_path()
 local bundles = {
-  vim.fn.glob(jd_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar", 1),
+  vim.fn.glob(jd_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar", true),
 }
 
 -- get java test
 local java_test = require("mason-registry").get_package("java-test")
 local jt_path = java_test:get_install_path()
-vim.list_extend(bundles, vim.split(vim.fn.glob(jt_path .. "/extension/server/*.jar", 1), "\n"))
+vim.list_extend(bundles, vim.split(vim.fn.glob(jt_path .. "/extension/server/*.jar", true), "\n"))
 
 -- keymaps
 -- stylua: ignore
@@ -47,6 +47,7 @@ local on_attach = function(client, bufnr)
 
   require("nvim-navic").attach(client, bufnr)
 
+  ---@diagnostic disable-next-line: unused-local
   for k, v in ipairs(keys) do
     set(v[1], v[2], v[3], { noremap = true, silent = true, buffer = bufnr, desc = v[4] })
   end

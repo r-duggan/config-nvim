@@ -87,6 +87,7 @@ return {
           folder_closed = "",
           folder_open = "",
           folder_empty = "󰜌",
+          ---@diagnostic disable-next-line: unused-local
           provider = function(icon, node, state) -- default icon provider utilizes nvim-web-devicons if available
             if node.type == "file" or node.type == "terminal" then
               local success, web_devicons = pcall(require, "nvim-web-devicons")

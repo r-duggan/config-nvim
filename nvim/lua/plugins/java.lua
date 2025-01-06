@@ -32,7 +32,7 @@ return {
     },
     config = function()
       local springboot_nvim = require("springboot-nvim")
-      springboot_nvim.setup({})
+      springboot_nvim.setup()
     end,
   },
 }

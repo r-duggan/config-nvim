@@ -4,6 +4,7 @@ return {
   config = function()
     require("notify").setup({
       render = "compact",
+      merge_duplicates = true,
     })
   end,
 }

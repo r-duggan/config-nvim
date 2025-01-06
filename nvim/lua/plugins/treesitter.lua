@@ -24,7 +24,7 @@ return {
         },
       },
       modules = {},
-      sync_install = {},
+      sync_install = true,
       ignore_install = {},
     })
   end,
