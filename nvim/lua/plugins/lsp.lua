@@ -1,21 +1,47 @@
 return {
 	{
 		"neovim/nvim-lspconfig",
-		config = function()
+		dependencies = {
+			-- Automatically install LSPs and related tools to stdpath for Neovim
+			{ "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
+			"williamboman/mason-lspconfig.nvim",
+			"WhoIsSethDaniel/mason-tool-installer.nvim",
+
+			-- Useful status updates for LSP.
+			-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
+			{ "j-hui/fidget.nvim", opts = {} },
+
+			-- Allows extra capabilities provided by nvim-cmp
+			--"hrsh7th/cmp-nvim-lsp",
+			"saghen/blink.cmp",
+			{
+				"folke/lazydev.nvim",
+				opts = {
+					library = {
+						{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+					},
+				},
+			},
+		},
+		opts = {
+			servers = {
+				lua_ls = {},
+				clangd = {},
+				jdtls = {},
+				bashls = {},
+				pyright = {},
+			},
+		},
+		config = function(_, opts)
 			local lspconfig = require("lspconfig")
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
-			})
+			for server, config in pairs(opts.servers) do
+				config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
+				lspconfig[server].setup(config)
+			end
 
-			lspconfig.ts_ls.setup({
-				capabilities = capabilities,
-			})
-
-			lspconfig.clangd.setup({
-				capabilities = capabilities,
-			})
+			require("mason").setup()
+			require("mason-tool-installer").setup({ ensure_installed = {} })
 		end,
 	},
 	{
@@ -101,6 +127,7 @@ return {
 						require("mason-nvim-dap").default_setup(config)
 					end,
 				},
+				automatic_installation = true,
 			})
 		end,
 	},

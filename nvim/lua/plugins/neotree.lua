@@ -55,6 +55,20 @@ return {
 				container = {
 					enable_character_fade = true,
 				},
+				diagnostics = {
+					symbols = {
+						hint = "󰌵",
+						info = " ",
+						warn = " ",
+						error = " ",
+					},
+					highlights = {
+						hint = "DiagnosticSignHint",
+						info = "DiagnosticSignInfo",
+						warn = "DiagnosticSignWarn",
+						error = "DiagnosticSignError",
+					},
+				},
 				indent = {
 					indent_size = 2,
 					padding = 1, -- extra padding on left hand side

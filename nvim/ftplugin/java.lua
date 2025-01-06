@@ -81,19 +81,25 @@ local on_attach = function(client, bufnr)
 	vim.cmd("command! -buffer JdtJshell lua require('jdtls').jshell()")
 
   -- stylua: ignore
-	vim.keymap.set( "n", "<leader>Jo", '<cmd>lua require("jdtls").organize_imports()<CR>', { desc = "[J]ava [o]rganize imports" })
+  vim.keymap.set("n", "<leader>Jo", '<cmd>lua require("jdtls").organize_imports()<CR>',
+    { desc = "[J]ava [o]rganize imports" })
   -- stylua: ignore
-	vim.keymap.set( "n", "<leader>Jv", '<cmd>lua require("jdtls").extract_variable()<CR>', { desc = "[J]ava extract [v]ariable" })
+  vim.keymap.set("n", "<leader>Jv", '<cmd>lua require("jdtls").extract_variable()<CR>',
+    { desc = "[J]ava extract [v]ariable" })
   -- stylua: ignore
-	vim.keymap.set( "v", "<leader>Jv", '<ESC><cmd>lua require("jdtls").extract_variable()<CR>', { desc = "[J]ava extract [v]ariable" })
+  vim.keymap.set("v", "<leader>Jv", '<ESC><cmd>lua require("jdtls").extract_variable()<CR>',
+    { desc = "[J]ava extract [v]ariable" })
   -- stylua: ignore
-	vim.keymap.set( "n", "<leader>JC", '<cmd>lua require("jdtls").extract_constant()<CR>', { desc = "[J]ava extract [C]onstant" })
+  vim.keymap.set("n", "<leader>JC", '<cmd>lua require("jdtls").extract_constant()<CR>',
+    { desc = "[J]ava extract [C]onstant" })
   -- stylua: ignore
-	vim.keymap.set( "v", "<leader>JC", '<ESC><cmd>lua require("jdtls").extract_constant()<CR>', { desc = "[J]ava extract [C]onstant" })
+  vim.keymap.set("v", "<leader>JC", '<ESC><cmd>lua require("jdtls").extract_constant()<CR>',
+    { desc = "[J]ava extract [C]onstant" })
   -- stylua: ignore
-	vim.keymap.set( "n", "<leader>Jt", '<cmd>lua require("jdtls").test_nearest_method()<CR>', { desc = "[J]ava [t]est method" })
+  vim.keymap.set("n", "<leader>Jt", '<cmd>lua require("jdtls").test_nearest_method()<CR>',
+    { desc = "[J]ava [t]est method" })
   -- stylua: ignore
-	vim.keymap.set("n", "<leader>JT", '<cmd>lua require("jdtls").test_class()<CR>', { desc = "[J]ava [T]est class" })
+  vim.keymap.set("n", "<leader>JT", '<cmd>lua require("jdtls").test_class()<CR>', { desc = "[J]ava [T]est class" })
 	vim.keymap.set("n", "<leader>Ju", "<cmd>JdtUpdateConfig<CR>", { desc = "[J]ava [u]pdate config" })
 	vim.keymap.set("n", "<leader>Jr", require("springboot-nvim").boot_run, { desc = "[r] Sprint Boot" })
 	vim.keymap.set("n", "<leader>Jc", require("springboot-nvim").generate_class, { desc = "create [c]lass" })
@@ -115,7 +121,7 @@ local capabilities = {
 	},
 }
 
-local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+local lsp_capabilities = require("blink.cmp").get_lsp_capabilities()
 
 for k, v in pairs(lsp_capabilities) do
 	capabilities[k] = v
