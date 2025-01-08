@@ -1,3 +1,10 @@
+-- DAP Plugins ----------------------------------------------------------------
+--
+--    Sections:
+--        -> maven                          [stuff to help with maven projects]
+--        -> gradle.nvim                    [stuff to help with gradle projects]
+--        -> springbook-nvim                [stuff to help with springboot projects]
+
 return {
   "mfussenegger/nvim-dap",
   dependencies = {
@@ -32,17 +39,12 @@ return {
   config = function()
     local dap = require("dap")
     local dapui = require("dapui")
-
     vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
-
     vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "Error", linehl = "", numhl = "" })
-
     dapui.setup()
-
     dap.listeners.before.launch.dapui_config = function()
       dapui.open()
     end
-
     local vscode = require("dap.ext.vscode")
     local json = require("plenary.json")
     ---@diagnostic disable-next-line: duplicate-set-field

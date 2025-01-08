@@ -1,4 +1,14 @@
+-- Java Plugins ---------------------------------------------------------------
+--
+--    Sections:
+--        -> maven                          [stuff to help with maven projects]
+--        -> gradle.nvim                    [stuff to help with gradle projects]
+--        -> springbook-nvim                [stuff to help with springboot projects]
+
 return {
+
+  --  maven [stuff to help with maven projects]
+  --  https://github.com/eatgrass/maven.nvim
   {
     "eatgrass/maven.nvim",
     cmd = { "Maven", "MavenExec" },
@@ -14,6 +24,9 @@ return {
       })
     end,
   },
+
+  --  gradle.nvim [stuff to help with gradle projects]
+  --  https://github.com/oclay1st/gradle.nvim
   {
     "oclay1st/gradle.nvim",
     cmd = { "Gradle", "GradleExec", "GradleInit" },
@@ -24,6 +37,9 @@ return {
     opts = {}, -- options, see default configuration
     keys = { { "<Leader>G", "<cmd>Gradle<cr>", desc = "Gradle" } },
   },
+
+  --  springbook-nvim [stuff to help with springboot projects]
+  --  https://github.com/elmcgill/springboot-nvim
   {
     "elmcgill/springboot-nvim",
     depedencies = {

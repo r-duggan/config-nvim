@@ -1,3 +1,4 @@
+-- Keymaps -------------------------------------------------------------------=
 local set = vim.keymap.set
 
 -- misc
@@ -20,8 +21,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local map = function(keys, func, desc, mode)
       mode = mode or "n"
-      set(mode, keys, func, { buffer = ev.buf, desc = "LSP: " .. desc })
+      set(mode, keys, func, { buffer = ev.buf, desc = "l LSP: " .. desc })
     end
+
     -- set keybinds
     map("gd", require("fzf-lua").lsp_definitions, "[G]oto [D]efinition")
     map("gr", require("fzf-lua").lsp_references, "[G]oto [R]eferences")
