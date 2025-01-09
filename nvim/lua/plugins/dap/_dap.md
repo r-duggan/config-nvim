@@ -1,5 +1,5 @@
--- DAP ------------------------------------------------------------------------
---
-# Plugins:
+# -- DAP ------------------------------------------------------------------------
 
-- nvim-dap                        [](https://github.com/mfussenegger/nvim-dap)
+## Plugins:
+
+- nvim-dap [](https://github.com/mfussenegger/nvim-dap)
