@@ -3,6 +3,7 @@
 return {
   {
     "eatgrass/maven.nvim",
+    event = { "BufReadPre", "BufNewFile" },
     cmd = { "Maven", "MavenExec" },
     dependencies = "nvim-lua/plenary.nvim",
     config = function()

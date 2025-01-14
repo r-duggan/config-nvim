@@ -3,6 +3,7 @@
 return {
   {
     "saghen/blink.cmp",
+    event = { "BufReadPre", "BufNewFile" },
     -- optional: provides snippets for the snippet source
     dependencies = {
       "rafamadriz/friendly-snippets",

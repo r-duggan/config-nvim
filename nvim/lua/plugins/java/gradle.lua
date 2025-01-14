@@ -3,6 +3,7 @@
 return {
   {
     "oclay1st/gradle.nvim",
+    event = { "BufReadPre", "BufNewFile" },
     cmd = { "Gradle", "GradleExec", "GradleInit" },
     dependencies = {
       "nvim-lua/plenary.nvim",

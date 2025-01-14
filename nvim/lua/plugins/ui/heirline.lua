@@ -3,6 +3,7 @@
 return {
   {
     "rebelot/heirline.nvim",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       -- https://github.com/Zeioth/heirline-components.nvim
       "Zeioth/heirline-components.nvim",

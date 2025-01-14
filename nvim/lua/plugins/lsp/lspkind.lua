@@ -3,6 +3,7 @@
 return {
   {
     "onsails/lspkind.nvim",
+    event = { "BufReadPre", "BufNewFile" },
     enabled = true,
     opts = {
       mode = "symbol",

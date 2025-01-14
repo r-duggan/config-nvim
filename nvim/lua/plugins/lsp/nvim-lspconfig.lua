@@ -18,7 +18,14 @@ return {
         clangd = {},
         jdtls = {},
         bashls = {},
-        pyright = {},
+        pyright = {
+          filetypes = {
+            "python",
+            "urscript",
+          },
+        },
+        ts_ls = {},
+        lemminx = {},
       },
     },
     config = function(_, opts)
@@ -37,7 +44,15 @@ return {
         end
       end
       require("mason").setup()
-      require("mason-tool-installer").setup({ ensure_installed = {} })
+      require("mason-tool-installer").setup({
+        ensure_installed = {
+          "ts_ls",
+          "lua_ls",
+          "clangd",
+          "jdtls",
+          "bashls",
+        },
+      })
     end,
   },
 }

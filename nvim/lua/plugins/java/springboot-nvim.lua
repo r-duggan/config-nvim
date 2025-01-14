@@ -3,6 +3,7 @@
 return {
   {
     "elmcgill/springboot-nvim",
+    event = { "BufReadPre", "BufNewFile" },
     depedencies = {
       "neovim/nvim-lspconfig",
       "mfussenegger/nvim-jdtls",
