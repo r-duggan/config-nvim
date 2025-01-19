@@ -1,5 +1,4 @@
 -- general pre config setup --
-
 local home = os.getenv("HOME")
 local root_markers = { "gradlew", "mvnw", ".git" }
 local root_dir = require("jdtls.setup").find_root(root_markers)
